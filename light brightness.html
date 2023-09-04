@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		Controlled Brightness in a Lamp
+	</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+        body {
+            background-color:silver ;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .calculator {
+            background-color: silver;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px silver;
+            display: inline-block;
+        }
+        input[type="text"], input[type="button"] {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 20px;
+        }
+        #result {
+            width: 250px;
+            font-size: 24px;
+        }
+  </style>
+</head>
+<body>
+
+    <div class="lamp-wrapper">
+        <div class="lamp-rope"></div>
+        <div class="lamp">
+          <div class="lamp-part -top">
+              <div class="lamp-part -top-part"></div>
+              <div class="lamp-part -top-part right"></div>
+          </div>
+          <div class="lamp-part -body"></div>
+          <div class="lamp-part -body right"></div>
+          <div class="lamp-part -bottom"></div>
+          <div class="blub"></div>
+        </div>
+        <div class="wall-light-shadow"></div>
+      </div>
+      <div class="calculator">
+          <input type="text" id="result" readonly>
+          <br>
+          <input type="button" value="1" onclick="addToResult('1')">
+          <input type="button" value="2" onclick="addToResult('2')">
+          <input type="button" value="3" onclick="addToResult('3')">
+          <input type="button" value="+" onclick="addToResult('+')">
+          <br>
+          <input type="button" value="4" onclick="addToResult('4')">
+          <input type="button" value="5" onclick="addToResult('5')">
+          <input type="button" value="6" onclick="addToResult('6')">
+          <input type="button" value="-" onclick="addToResult('-')">
+          <br>
+          <input type="button" value="7" onclick="addToResult('7')">
+          <input type="button" value="8" onclick="addToResult('8')">
+          <input type="button" value="9" onclick="addToResult('9')">
+          <input type="button" value="*" onclick="addToResult('*')">
+          <br>
+          <input type="button" value="C" onclick="clearResult()">
+          <input type="button" value="0" onclick="addToResult('0')">
+          <input type="button" value="=" onclick="calculateResult()">
+          <input type="button" value="/" onclick="addToResult('/')">
+      </div>
+  
+      <script>
+          function addToResult(value) {
+              document.getElementById('result').value += value;
+          }
+  
+          function clearResult() {
+              document.getElementById('result').value = '';
+          }
+  
+          function calculateResult() {
+              try {
+                  document.getElementById('result').value = eval(document.getElementById('result').value);
+              } catch (error) {
+                  document.getElementById('result').value = 'Error';
+              }
+          }
+      </script>
+      <form oninput="body.setAttribute('data-light', slider.value)">
+        <div class="icon sun">
+          <div class="ray"></div>
+          <div class="ray"></div>
+          <div class="ray"></div>
+          <div class="ray"></div>
+          <div class="ray"></div>
+          <div class="ray"></div>
+          <div class="ray"></div>
+          <div class="ray"></div>
+        </div>
+        <input type="range" id="slider" value="0" min="0" max="10">
+      </form>
+      
+</body>
+</html>
